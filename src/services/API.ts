@@ -1,5 +1,5 @@
-import { QuestionItem } from "../../types/QuizTypes";
-import { questions } from "../../data/questions";
+import { QuestionItem } from "../types/QuizTypes";
+import { questions } from "../data/questions";
 
 // This function mimics an API call
 export const fetchQuestions = async (): Promise<QuestionItem[]> => {

@@ -10,7 +10,7 @@ import romance from '../images/romance.svg'
 export const questions: QuestionItem[] = [
     {
       id: 1,
-      title: 'Which cuisine do you prefer?',
+      title: 'Which language do you prefer?',
       type: 'single-select',
       options: [
         { text: 'Italian' },
@@ -45,6 +45,7 @@ export const questions: QuestionItem[] = [
     {
       id: 4,
       title: 'What qualities do you value in a friend?',
+      subTitle: "Highlight the traits that matter most to you in friendships",
       type: 'multiple-select',
       options: [
         { text: 'Honesty' },
