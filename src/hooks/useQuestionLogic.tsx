@@ -1,17 +1,17 @@
-// useQuestionLogic.ts
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchQuestions } from '../services/API';
 import { QuestionItem } from '../types/QuizTypes';
 
-interface UseQuestionLogicReturn {
+type UseQuestionLogicReturn = {
   selectedAnswers: string[];
   questions: QuestionItem[];
   loading: boolean;
   navigate: ReturnType<typeof useNavigate>;
   updateLocalStorage: (newSelectedAnswers: string[]) => void;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  id: string | undefined
+  id: number
+  setSelectedAnswers: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 export const useQuestionLogic = (): UseQuestionLogicReturn => {
@@ -45,5 +45,5 @@ export const useQuestionLogic = (): UseQuestionLogicReturn => {
     setSelectedAnswers(newSelectedAnswers);
   };
 
-  return { selectedAnswers, questions, loading, navigate, updateLocalStorage, setLoading, id };
+  return { selectedAnswers, setSelectedAnswers, questions, loading, navigate, updateLocalStorage, setLoading, id: questionId };
 };

@@ -1,0 +1,65 @@
+{
+  "questions": {
+    "2": {
+      "title": "Selecciona tu género de película favorito:",
+      "options": {
+        "Drama": "Drama",
+        "Comedy": "Comedia",
+        "Horror": "Terror",
+        "Action": "Acción"
+      }
+    },
+    "3": {
+      "title": "Cuál es tu grupo de edad?",
+      "options": {
+        "Under 18": "Menores de 18",
+        "18-24": "18-24",
+        "25-34": "25-34",
+        "35-44": "35-44",
+        "45 and above": "45 y más"
+      }
+    },
+    "4": {
+      "title": "Qué cualidades valoras en un amigo?",
+      "subTitle": "Destaca las cualidades que más valoras en las amistades",
+      "options": {
+        "Honesty": "Honestidad",
+        "Humor": "Humor",
+        "Empathy": "Empatía",
+        "Reliability": "Fiabilidad",
+        "Creativity": "Creatividad"
+      }
+    },
+    "5": {
+      "title": "Cuáles son tus temas favoritos?",
+      "subTitle": "Elige hasta 3 temas que te gusten",
+      "options": {
+        "Werewolf": "Hombre lobo",
+        "Action": "Acción",
+        "Royal Obsession": "Obsesión Real",
+        "Billionaires": "Millonarios",
+        "Young Adult": "Joven Adulto",
+        "Bad Boy": "Chico Malo",
+        "Romance": "Romance"
+      }
+    }
+  },
+  "screens": {
+    "loading": "Buscando colecciones para ti...",
+    "email": {
+      "placeholder": "Tu correo electrónico",
+      "title": "Correo Electrónico",
+      "subTitle": "Ingresa tu correo electrónico para obtener acceso completo",
+      "invalidEmail": "Correo electrónico inválido",
+      "termsText": "Al continuar, acepto la política de privacidad y los términos de uso.",
+      "submit": "Siguiente"
+    },
+    "result": {
+      "title": "Gracias",
+      "subTitle": "por apoyarnos y pasar el cuestionario",
+      "download": "Descargar mis respuestas",
+      "retakeQuiz": "Repetir el cuestionario"
+    },
+    "nextButton": "Siguiente"
+  }
+}

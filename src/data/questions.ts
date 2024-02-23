@@ -13,7 +13,7 @@ export const questions: QuestionItem[] = [
       title: 'Which language do you prefer?',
       type: 'single-select',
       options: [
-        { text: 'Italian' },
+        { text: 'Spanish' },
         { text: 'German' },
         { text: 'English' },
         { text: 'French' },
@@ -58,13 +58,13 @@ export const questions: QuestionItem[] = [
     {
       id: 5,
       title: 'What are your favorite topics?',
-      subTitle: "Choose up to three topics you like",
+      subTitle: "Choose up to 3 topics you like",
       type: 'bubble',
       options: [
         { text: 'Werewolf', image: wereWolf },
         { text: 'Action', image: action },
-        { text: 'Royal Obession', image: royalObession },
-        { text: 'Billionars', image: billionairs },
+        { text: 'Royal Obsession', image: royalObession },
+        { text: 'Billionaires', image: billionairs },
         { text: 'Young Adult', image: youngAdult },
         { text: 'Bad Boy', image: badBoy },
         { text: 'Romance', image: romance },

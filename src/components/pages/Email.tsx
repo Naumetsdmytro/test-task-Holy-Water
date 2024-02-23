@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { CustomButton } from '../Button';
 import { Container } from '../Container';
@@ -38,6 +39,7 @@ const EmailInput = styled.input`
 `;
 
 const TermsText = styled.p`
+max-width: 470px;
   margin: 40px 0 70px 0;
   font-size: 14px;
   font-weight: 500;
@@ -58,6 +60,7 @@ const Email = () => {
   const [email, setEmail] = useState<string>('');
   const [isValid, setIsValid] = useState<boolean>(true);
   const navigate = useNavigate()
+  const { t } = useTranslation();
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -71,22 +74,22 @@ const Email = () => {
 
   return (
     <Container>
-      <Title>Email</Title>
-      <SubTitle>Enter your email to get full access</SubTitle>
+      <Title>{t('screens.email.title')}</Title>
+      <SubTitle>{t('screens.email.subTitle')}</SubTitle>
       <form onSubmit={handleFormSubmit}>
         <EmailInput
           type='email'
           value={email}
           onChange={handleEmailChange}
-          placeholder="Your email"
+          placeholder={t('screens.email.placeholder')}
           required
         />
-        {!isValid && <ErrorText>Invalid email</ErrorText>}
+        {!isValid && <ErrorText>{t('screens.email.invalidEmail')}</ErrorText>}
         <TermsText>
-          By continuing I agree with <span>Privacy policy</span> and <span>Terms of use.</span>
+          {t('screens.email.termsText')}
         </TermsText>
         <CustomButton type='submit' disabled={!isValid || !email}>
-          Next
+          {t('screens.email.submit')}
         </CustomButton>
       </form>
     </Container>

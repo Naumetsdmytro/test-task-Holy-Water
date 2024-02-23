@@ -1,0 +1,65 @@
+{
+  "questions": {
+    "2": {
+      "title": "Wählen Sie Ihr Lieblingsfilmgenre:",
+      "options": {
+        "Drama": "Drama",
+        "Comedy": "Komödie",
+        "Horror": "Horror",
+        "Action": "Aktion"
+      }
+    },
+    "3": {
+      "title": "Zu welcher Altersgruppe gehören Sie?",
+      "options": {
+        "Under 18": "Unter 18",
+        "18-24": "18-24",
+        "25-34": "25-34",
+        "35-44": "35-44",
+        "45 and above": "45 und älter"
+      }
+    },
+    "4": {
+      "title": "Welche Eigenschaften schätzen Sie bei einem Freund?",
+      "subTitle": "Heben Sie die Merkmale hervor, die Ihnen in Freundschaften am wichtigsten sind",
+      "options": {
+        "Honesty": "Ehrlichkeit",
+        "Humor": "Humor",
+        "Empathy": "Empathie",
+        "Reliability": "Zuverlässigkeit",
+        "Creativity": "Kreativität"
+      }
+    },
+    "5": {
+      "title": "Was sind Ihre Lieblingsthemen?",
+      "subTitle": "Wählen Sie bis zu 3 Themen aus, die Ihnen gefallen",
+      "options": {
+        "Werewolf": "Werwolf",
+        "Action": "Aktion",
+        "Royal Obsession": "Königliche Besessenheit",
+        "Billionaires": "Milliardäre",
+        "Young Adult": "Junge Erwachsene",
+        "Bad Boy": "Böser Junge",
+        "Romance": "Romantik"
+      }
+    }
+  },
+  "screens": {
+    "loading": "Finden von Kollektionen für Sie...",
+    "email": {
+      "placeholder": "Deine E-Mail",
+      "title": "E-Mail",
+      "subTitle": "Geben Sie Ihre E-Mail ein, um vollen Zugriff zu erhalten",
+      "invalidEmail": "Ungültige E-Mail",
+      "termsText": "Indem ich fortfahre, stimme ich der Datenschutzrichtlinie und den Nutzungsbedingungen zu.",
+      "submit": "Weiter"
+    },
+    "result": {
+      "title": "Danke",
+      "subTitle": "für Ihre Unterstützung und das Absolvieren des Quiz",
+      "download": "Meine Antworten herunterladen",
+      "retakeQuiz": "Quiz wiederholen"
+    },
+    "nextButton": "Weiter"
+  }
+}

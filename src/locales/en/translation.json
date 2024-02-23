@@ -1,0 +1,73 @@
+{
+  "questions": {
+    "1": {
+      "title": "Which language do you prefer?",
+      "options": {
+        "Spanish": "Spanish",
+        "German": "German",
+        "English": "English",
+        "French": "French"
+      }
+    },
+    "2": {
+      "title": "Select your favorite movie genre:",
+      "options": {
+        "Drama": "Drama",
+        "Comedy": "Comedy",
+        "Horror": "Horror",
+        "Action": "Action"
+      }
+    },
+    "3": {
+      "title": "What is your age group?",
+      "options": {
+        "Under 18": "Under 18",
+        "18-24": "18-24",
+        "25-34": "25-34",
+        "35-44": "35-44",
+        "45 and above": "45 and above"
+      }
+    },
+    "4": {
+      "title": "What qualities do you value in a friend?",
+      "subTitle": "Highlight the traits that matter most to you in friendships",
+      "options": {
+        "Honesty": "Honesty",
+        "Humor": "Humor",
+        "Empathy": "Empathy",
+        "Reliability": "Reliability",
+        "Creativity": "Creativity"
+      }
+    },
+    "5": {
+      "title": "What are your favorite topics?",
+      "subTitle": "Choose up to 3 topics you like",
+      "options": {
+        "Werewolf": "Werewolf",
+        "Action": "Action",
+        "Royal Obsession": "Royal Obsession",
+        "Billionaires": "Billionaires",
+        "Young Adult": "Young Adult",
+        "Bad Boy": "Bad Boy",
+        "Romance": "Romance"
+      }
+    }
+  },
+  "screens": {
+    "loading": "Finding collections for you...",
+    "email": {
+      "title": "Email",
+      "subTitle": "Enter your email to get full access",
+      "invalidEmail": "Invalid email",
+      "termsText": "By continuing I agree with Privacy policy and Terms of use.",
+      "submit": "Next"
+    },
+    "result": {
+      "title": "Thank You",
+      "subTitle": "for supporting us and passing quiz",
+      "download": "Download my answers",
+      "retakeQuiz": "Retake quiz"
+    },
+    "nextButton": "Next"
+  }
+}

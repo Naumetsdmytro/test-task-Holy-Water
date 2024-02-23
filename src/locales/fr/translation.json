@@ -1,0 +1,65 @@
+{
+  "questions": {
+    "2": {
+      "title": "Sélectionnez votre genre de film préféré :",
+      "options": {
+        "Drama": "Drame",
+        "Comedy": "Comédie",
+        "Horror": "Horreur",
+        "Action": "Action"
+      }
+    },
+    "3": {
+      "title": "Quel est votre groupe d'âge ?",
+      "options": {
+        "Under 18": "Moins de 18 ans",
+        "18-24": "18-24 ans",
+        "25-34": "25-34 ans",
+        "35-44": "35-44 ans",
+        "45 and above": "45 ans et plus"
+      }
+    },
+    "4": {
+      "title": "Quelles qualités appréciez-vous chez un ami ?",
+      "subTitle": "Mettez en avant les traits qui comptent le plus pour vous dans les amitiés",
+      "options": {
+        "Honesty": "Honnêteté",
+        "Humor": "Humour",
+        "Empathy": "Empathie",
+        "Reliability": "Fiabilité",
+        "Creativity": "Créativité"
+      }
+    },
+    "5": {
+      "title": "Quels sont vos sujets préférés ?",
+      "subTitle": "Choisissez jusqu'à 3 sujets que vous aimez",
+      "options": {
+        "Werewolf": "Loup-garou",
+        "Action": "Action",
+        "Royal Obsession": "Obsession Royale",
+        "Billionaires": "Milliardaires",
+        "Young Adult": "Jeune Adulte",
+        "Bad Boy": "Mauvais Garçon",
+        "Romance": "Romance"
+      }
+    }
+  },
+  "screens": {
+    "loading": "Recherche de collections pour vous...",
+    "email": {
+      "placeholder": "Votre email",
+      "title": "Email",
+      "subTitle": "Entrez votre email pour obtenir un accès complet",
+      "invalidEmail": "Email invalide",
+      "termsText": "En continuant, j'accepte la politique de confidentialité et les conditions d'utilisation.",
+      "submit": "Suivant"
+    },
+    "result": {
+      "title": "Merci",
+      "subTitle": "de nous soutenir et de passer le quiz",
+      "download": "Télécharger mes réponses",
+      "retakeQuiz": "Refaire le quiz"
+    },
+    "nextButton": "Suivant"
+  }
+}

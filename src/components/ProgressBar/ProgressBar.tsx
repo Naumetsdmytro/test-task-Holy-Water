@@ -83,7 +83,7 @@ export const ProgressBarComponent = () => {
   return (
       <Header>
         <GoBackButtonContainer>
-          {step > 1 && (
+          {step > 2 && (
             <GoBackButton onClick={() => navigate(`/quiz/${step - 1}`)}>
               <GoBackImg src={goBackIcon} alt="go back" />
             </GoBackButton>

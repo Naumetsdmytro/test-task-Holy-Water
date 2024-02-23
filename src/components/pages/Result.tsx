@@ -1,15 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import checkIcon from '../../images/checkmark.svg';
 import downloadIcon from '../../images/download.svg';
 import { CustomButton } from '../Button';
 import { Container } from '../Container';
-
-type AnswerObject = {
-    id: number;
-    answer: string[];
-  }
 
 const Title = styled.h1`
   font-family: "Niconne", cursive;
@@ -52,13 +48,20 @@ const DownloadButton = styled.button`
 
 const Result = () => {
     const navigate = useNavigate()
+    const { t, i18n } = useTranslation();
+
 
     const handleDownloadAnswers = () => {
         const answersJson = localStorage.getItem('answers');
         if (answersJson) {
-          const answersArray: AnswerObject[] = JSON.parse(answersJson);
+          const answersObj = JSON.parse(answersJson);
       
-          const formattedAnswers = answersArray.map((answerObj: AnswerObject) => {
+          const answersArray = Object.keys(answersObj).map((questionId) => ({
+            id: questionId,
+            answer: answersObj[questionId],
+          }));
+      
+          const formattedAnswers = answersArray.map((answerObj) => {
             const questionText = `Question ${answerObj.id}`;
             const answersText = answerObj.answer.join(", ");
             return `${questionText}: ${answersText}`;
@@ -74,27 +77,31 @@ const Result = () => {
           document.body.removeChild(link);
         }
       };
+      
 
       const handleButtonClick = () => {
         localStorage.removeItem('answers');
+        localStorage.removeItem('language');
+        i18n.changeLanguage('English');
         navigate('/quiz/1')
       }
       
 
-  return (
-    <Container>
-      <Title>Thank You</Title>
-      <Subtitle>for supporting us and passing quiz</Subtitle>
-      <CheckMarkContainer>
-        <img src={checkIcon} alt="success result"/>
-      </CheckMarkContainer>
-      <DownloadButton onClick={handleDownloadAnswers}>
-        <img src={downloadIcon} alt="download answers"/>
-        Download my answers
-      </DownloadButton>
-      <CustomButton handleButtonClick={handleButtonClick}>Retake quiz</CustomButton>
-    </Container>
-  );
+      return (
+        <Container>
+          <Title>{t('screens.result.title')}</Title>
+          <Subtitle>{t('screens.result.subTitle')}</Subtitle>
+          <CheckMarkContainer>
+            <img src={checkIcon} alt="success screens.result"/>
+          </CheckMarkContainer>
+          <DownloadButton onClick={handleDownloadAnswers}>
+            <img src={downloadIcon} alt="download answers"/>
+            {t('screens.result.download')}
+          </DownloadButton>
+          <CustomButton handleButtonClick={handleButtonClick}>{t('screens.result.retakeQuiz')}</CustomButton>
+        </Container>
+      );
+    
 };
 
 export default Result;

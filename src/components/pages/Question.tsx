@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuestionLogic } from '../../hooks/useQuestionLogic';
+import { useTranslation } from 'react-i18next';
 import { OptionItem } from '../OptionItem';
-import { BubbleOption } from '../BubbleOption';
+import { BubbleItem } from '../BubbleItem';
 import { ProgressBarComponent } from '../ProgressBar';
 import { CustomButton } from '../Button';
 import { Loader } from '../Loader';
+import { QuestionItem } from '../../types/QuizTypes';
 
 const QuestionContainer = styled.div`
   color: white;
@@ -32,50 +34,82 @@ const OptionList = styled.ul`
   padding: 0;
 `;
 
+const BubbleList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+`;
+
 const Question = () => {
-  const {
-    selectedAnswers,
-    questions,
-    loading,
-    navigate,
-    updateLocalStorage,
-    setLoading,
-    id,
-  } = useQuestionLogic();
+  const { selectedAnswers, questions, loading, navigate, updateLocalStorage, setLoading, id, setSelectedAnswers } = useQuestionLogic();
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem('language');
+    if (storedLanguage && id > 1) {
+      i18n.changeLanguage(storedLanguage);
+    }
+    if(id === 1){
+      localStorage.removeItem('answers')
+    }
+  }, [i18n, id]);
+
+  const handleLanguageSelect = (languageCode: string) => {
+    i18n.changeLanguage(languageCode).then(() => {
+      localStorage.setItem('language', languageCode);
+      updateLocalStorage([languageCode]);
+      goToNextQuestion();
+    });
+  };
+  
 
   const handleAnswerSelect = (text: string) => {
-    const questionIndex = questions.findIndex((q) => q.id.toString() === id);
-    if (questionIndex === -1) return;
+    const question = questions.find(q => q.id === id);
+    if (!question) return;
 
-    const question = questions[questionIndex];
-    let newSelectedAnswers = [...selectedAnswers];
-    
-    if (question.type === 'bubble') {
-      if (newSelectedAnswers.includes(text)) {
-        newSelectedAnswers = newSelectedAnswers.filter((answer) => answer !== text);
-      } else if (newSelectedAnswers.length < 3) {
-        newSelectedAnswers.push(text);
-      }
-    } else if (question.type === 'multiple-select') {
-      const answerIndex = newSelectedAnswers.indexOf(text);
-      if (answerIndex !== -1) {
-        newSelectedAnswers.splice(answerIndex, 1);
-      } else {
-        newSelectedAnswers.push(text);
-      }
-    } else {
-      newSelectedAnswers = [text];
+    if (question.id === 1) {
+      handleLanguageSelect(text);
+      return;
     }
 
-    updateLocalStorage(newSelectedAnswers);
+    updateAnswersBasedOnQuestionType(question, text);
+  };
+
+  const updateAnswersBasedOnQuestionType = (question: QuestionItem, text: string) => {
+    const isAlreadySelected = selectedAnswers.includes(text);
     
     if (question.type === 'single-select') {
-      goToNextQuestion();
+      finalizeSelection([text]);
+      return;
     }
+  
+    let newSelectedAnswers = [...selectedAnswers];
+  
+    if (isAlreadySelected) {
+      newSelectedAnswers = newSelectedAnswers.filter(answer => answer !== text);
+    } else if (question.type === 'bubble' && newSelectedAnswers.length < 3) {
+      newSelectedAnswers.push(text);
+    } else if (question.type === 'multiple-select') {
+      newSelectedAnswers.push(text);
+    }
+  
+    setSelectedAnswers(newSelectedAnswers);
+  };
+
+  const finalizeSelection = (newSelectedAnswers: string[]) => {
+    updateLocalStorage(newSelectedAnswers);
+    goToNextQuestion();
   };
 
   const goToNextQuestion = () => {
-    const nextQuestionId = parseInt(id || '0', 10) + 1;
+    const currentQuestion = questions.find(q => q.id === id);
+
+    if (currentQuestion && (currentQuestion.type === 'bubble' || currentQuestion.type === 'multiple-select')) {
+      updateLocalStorage(selectedAnswers);
+    }
+
+    const nextQuestionId = id + 1;
     if (nextQuestionId <= questions.length) {
       navigate(`/quiz/${nextQuestionId}`);
     } else {
@@ -83,41 +117,49 @@ const Question = () => {
     }
   };
 
-  const currentQuestion = questions.find((q) => q.id.toString() === id);
-
+  const currentQuestion = questions.find(q => q.id === id);
   if (!currentQuestion) return <div>Question not found</div>;
 
   return (
-    loading ? <Loader handleComplete={() => navigate('/email')}/> :
+    loading ? <Loader handleComplete={() => navigate('/email')} /> :
     <>
       <ProgressBarComponent />
       <QuestionContainer>
-        <QuestionTitle>{currentQuestion.title}</QuestionTitle>
-        {currentQuestion.subTitle && <QuestionSubtitle>{currentQuestion.subTitle}</QuestionSubtitle>}
-        <OptionList>
-          {currentQuestion.options.map((option) => (
-            currentQuestion.type === 'bubble' ? (
-              <BubbleOption
-                key={option.text}
-                text={option.text}
+        <QuestionTitle>{t(`questions.${id}.title`)}</QuestionTitle>
+        {currentQuestion.subTitle && (
+          <QuestionSubtitle>
+            {t(`questions.${id}.subTitle`)}
+          </QuestionSubtitle>
+        )}
+        {currentQuestion.type === 'bubble' ? (
+          <BubbleList>
+            {currentQuestion.options.map((option) => {
+              const optionValue = t(`questions.${id}.options.${option.text}`)
+              return <BubbleItem
+                key={optionValue}
+                text={optionValue}
                 imageUrl={option.image}
-                isSelected={selectedAnswers.includes(option.text)}
-                onSelect={handleAnswerSelect}
-              />
-            ) : (
-              <OptionItem
-                key={option.text}
-                text={option.text}
-                isSelected={selectedAnswers.includes(option.text)}
-                onSelect={handleAnswerSelect}
+                isSelected={selectedAnswers.includes(optionValue)}
+                onSelect={() => handleAnswerSelect(optionValue)}
+              />})}
+          </BubbleList>
+        ) : (
+          <OptionList>
+            {currentQuestion.options.map((option) => {
+              const optionValue = t(`questions.${id}.options.${option.text}`)
+              return <OptionItem
+                key={optionValue}
+                text={optionValue}
                 type={currentQuestion.type}
+                isSelected={selectedAnswers.includes(optionValue)}
+                onSelect={() => handleAnswerSelect(optionValue)}
               />
-            )
-          ))}
-        </OptionList>
+            })}
+          </OptionList>
+        )}
         {currentQuestion.type !== 'single-select' && (
           <CustomButton onClick={goToNextQuestion} disabled={selectedAnswers.length === 0}>
-            Next
+            {t('screens.nextButton')}
           </CustomButton>
         )}
       </QuestionContainer>
@@ -126,4 +168,3 @@ const Question = () => {
 };
 
 export default Question;
-

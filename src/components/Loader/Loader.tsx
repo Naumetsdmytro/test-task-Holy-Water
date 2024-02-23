@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useTranslation } from 'react-i18next';
 import { Container } from "../Container";
 
 type LoaderProps = {
@@ -43,6 +44,8 @@ const BackgroundCircle = styled.circle`
 
 export const Loader = ({ handleComplete }: LoaderProps) => {
   const [percent, setPercent] = useState(0);
+  const { t } = useTranslation()
+
   const radius = 121;
   const circumference = 2 * Math.PI * radius;
 
@@ -83,7 +86,7 @@ export const Loader = ({ handleComplete }: LoaderProps) => {
         </svg>
         <Percentage>{Math.round(percent)}%</Percentage>
       </LoaderContainer>
-      <Subtitle>Finding collections for you...</Subtitle>
+      <Subtitle>{t('screens.loading')}</Subtitle>
     </Container>
   );
 };
